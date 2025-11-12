@@ -1,11 +1,5 @@
 // src/components/ModelViewer.tsx
-import React, {
-  Suspense,
-  useRef,
-  useLayoutEffect,
-  useEffect,
-  useMemo,
-} from "react";
+import { Suspense, useRef, useLayoutEffect, useEffect, useMemo } from "react";
 import {
   Canvas,
   useFrame,
@@ -177,7 +171,6 @@ function ModelInner({
     try {
       if (ext === "glb" || ext === "gltf") return useGLTF(url).scene.clone();
       if (ext === "fbx") return useFBX(url).clone();
-      if (ext === "obj") return useLoader(OBJLoader, url).clone();
     } catch (e) {
       // swallow — hook-related errors will surface at runtime if invalid usage occurs
     }
