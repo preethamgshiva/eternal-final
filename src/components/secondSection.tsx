@@ -11,15 +11,15 @@ const SecondSection = () => {
         {/* Left Side */}
         <div className="flex-1 flex items-center justify-center mb-10 lg:mb-0">
           <ModelViewer
-            url="https://raw.githubusercontent.com/preethamgshiva/eternal-final/main/src/assets/final.glb"
+            url="https://raw.githubusercontent.com/preethamgshiva/eternal-final/main/src/assets/perfume.glb"
             width={500}
             height={500}
-            maxZoomDistance={2}
+            maxZoomDistance={4}
             autoRotate={false}
-            modelXOffset={-0.2}
-            modelYOffset={-0.4}
-            defaultRotationX={-80}
-            defaultRotationY={10}
+            modelXOffset={0}
+            modelYOffset={0}
+            defaultRotationX={0}
+            defaultRotationY={45}
           />
         </div>
 

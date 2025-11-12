@@ -435,7 +435,7 @@ export default function ModelViewer({
   defaultRotationX = -50,
   defaultRotationY = 20,
   defaultZoom = 0.1,
-  minZoomDistance = 0.5,
+  minZoomDistance = 0.1,
   maxZoomDistance = 5,
   enableMouseParallax = true,
   enableManualRotation = true,
