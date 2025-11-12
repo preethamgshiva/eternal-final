@@ -1,3 +1,4 @@
+// src/components/BlurText.tsx
 import { motion } from "motion/react";
 import { useEffect, useRef, useState, useMemo } from "react";
 
@@ -18,18 +19,27 @@ type BlurTextProps = {
   stepDuration?: number;
 };
 
+/**
+ * Build keyframes where every property array has no `undefined`.
+ * If a particular step doesn't provide a key, we fall back to the initial `from` value.
+ */
 const buildKeyframes = (
   from: Record<string, string | number>,
   steps: Array<Record<string, string | number>>
-): Record<string, Array<string | number | undefined>> => {
+): Record<string, Array<string | number>> => {
   const keys = new Set<string>([
     ...Object.keys(from || {}),
     ...steps.flatMap((s) => Object.keys(s || {})),
   ]);
 
-  const keyframes: Record<string, Array<string | number | undefined>> = {};
+  const keyframes: Record<string, Array<string | number>> = {};
   keys.forEach((k) => {
-    keyframes[k] = [from[k], ...steps.map((s) => s[k])];
+    const first = from[k];
+    // for each step, if s[k] is undefined, fall back to 'first'
+    const rest = steps.map((s) =>
+      s[k] === undefined ? first : (s[k] as string | number)
+    );
+    keyframes[k] = [first, ...rest];
   });
   return keyframes;
 };
@@ -77,11 +87,7 @@ export default function BlurText({
 
   const defaultTo = useMemo(
     () => [
-      {
-        filter: "blur(5px)",
-        opacity: 0.5,
-        y: direction === "top" ? 5 : -5,
-      },
+      { filter: "blur(5px)", opacity: 0.5, y: direction === "top" ? 5 : -5 },
       { filter: "blur(0px)", opacity: 1, y: 0 },
     ],
     [direction]
@@ -99,20 +105,22 @@ export default function BlurText({
   return (
     <p ref={ref} className={`blur-text ${className} flex flex-wrap`}>
       {elements.map((segment, index) => {
+        // animateKeyframes now guaranteed to have no `undefined` values
         const animateKeyframes = buildKeyframes(fromSnapshot, toSnapshots);
 
+        // cast to any so we don't rely on MotionOne/FramerMotion TS types in the build
         const spanTransition = {
           duration: totalDuration,
           times,
           delay: (index * delay) / 1000,
           ease: easing,
-        } as any; // keep as `any` to avoid type mismatch between motion libs
+        } as any;
 
         return (
           <motion.span
             key={index}
-            initial={fromSnapshot}
-            animate={inView ? animateKeyframes : fromSnapshot}
+            initial={fromSnapshot as any}
+            animate={inView ? (animateKeyframes as any) : (fromSnapshot as any)}
             transition={spanTransition}
             onAnimationComplete={
               index === elements.length - 1 ? onAnimationComplete : undefined
