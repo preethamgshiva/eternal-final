@@ -11,7 +11,7 @@ const SecondSection = () => {
         {/* Left Side */}
         <div className="flex-1 flex items-center justify-center mb-10 lg:mb-0">
           <ModelViewer
-            url="https://raw.githubusercontent.com/preethamgshiva/eternal-final/main/src/assets/perfume.glb"
+            url="https://raw.githubusercontent.com/preethamgshiva/eternal-final/main/src/assets/final.glb"
             width={500}
             height={500}
             maxZoomDistance={4}
@@ -26,7 +26,7 @@ const SecondSection = () => {
         {/* Right Side */}
         <div className="flex-1 flex flex-col items-center lg:items-start justify-center">
           <BlurText
-            text="The Next Chapter"
+            text="The Essence of Eternity"
             delay={150}
             animateBy="words"
             direction="top"
@@ -34,8 +34,7 @@ const SecondSection = () => {
             className="text-5xl lg:text-7xl font-bold mb-6"
           />
           <BlurText
-            text="This new section now scrolls over the top of the landing page,
-            creating a clean, overlapping transition."
+            text="For centuries, fragrance has been our invisible signature—Eternal reimagines this timeless art, blending emotion, memory, and luxury into every drop."
             delay={100}
             animateBy="words"
             direction="top"
