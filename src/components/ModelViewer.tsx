@@ -1,12 +1,6 @@
 // src/components/ModelViewer.tsx
 import { Suspense, useRef, useLayoutEffect, useEffect, useMemo } from "react";
-import {
-  Canvas,
-  useFrame,
-  useLoader,
-  useThree,
-  invalidate,
-} from "@react-three/fiber";
+import { Canvas, useFrame, useThree, invalidate } from "@react-three/fiber";
 import {
   OrbitControls,
   useGLTF,
