@@ -434,9 +434,9 @@ export default function ModelViewer({
   modelYOffset = 0,
   defaultRotationX = -50,
   defaultRotationY = 20,
-  defaultZoom = 0.5,
+  defaultZoom = 0.1,
   minZoomDistance = 0.5,
-  maxZoomDistance = 10,
+  maxZoomDistance = 5,
   enableMouseParallax = true,
   enableManualRotation = true,
   enableHoverRotation = true,
@@ -451,7 +451,7 @@ export default function ModelViewer({
   showScreenshotButton = true,
   fadeIn = false,
   autoRotate = false,
-  autoRotateSpeed = 0.35,
+  autoRotateSpeed = 0.2,
   onModelLoaded,
 }: ViewerProps) {
   useEffect(() => void useGLTF.preload(url), [url]);
