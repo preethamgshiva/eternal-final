@@ -6,7 +6,14 @@ const SecondSection = () => {
       <div className="flex flex-col lg:flex-row items-center justify-center min-h-screen p-10 text-center lg:text-left">
         {/* Left Side */}
         <div className="flex-1 flex items-center justify-center mb-10 lg:mb-0">
-          <ModelViewer url={ProductModel} width={800} height={800} />
+          <ModelViewer
+            url="https://raw.githubusercontent.com/preethamgshiva/eternal-final/main/src/assets/final.glb"
+            width={500}
+            height={500}
+            modelXOffset={0}
+            modelYOffset={-1}
+            defaultZoom={0.5}
+          />
         </div>
 
         {/* Right Side */}
