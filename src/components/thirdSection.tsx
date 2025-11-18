@@ -2,6 +2,7 @@ import { useRef } from "react";
 import BlurText from "./BlurText";
 import VariableProximity from "./VariableProximity";
 import ScrollFrameAnimation from "./ScrollFrameAnimation";
+import FourthSection from "./fourthSection";
 
 const ThirdSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -17,6 +18,9 @@ const ThirdSection = () => {
           frameExtension="jpg"
         />
       </section>
+
+      {/* Fourth Section - Products */}
+      <FourthSection />
 
       {/* How It Works */}
       <section className="min-h-screen flex items-center px-6 lg:px-12 py-20">
@@ -169,29 +173,6 @@ const ThirdSection = () => {
               </div>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="min-h-screen flex items-center px-6 lg:px-12 py-20 bg-black text-white">
-        <div className="max-w-4xl mx-auto text-center w-full">
-          <BlurText
-            text="Start feeling better today"
-            delay={60}
-            animateBy="letters"
-            direction="bottom"
-            className="text-5xl lg:text-7xl font-light mb-8 leading-tight"
-          />
-          <BlurText
-            text="Free shipping on all orders. 30-day money-back guarantee."
-            delay={60}
-            animateBy="words"
-            direction="top"
-            className="text-xl lg:text-2xl text-gray-400 mb-12 font-light"
-          />
-          <button className="px-12 py-5 bg-white text-black text-sm tracking-wider hover:bg-gray-100 transition-colors">
-            SHOP ETERNAL
-          </button>
         </div>
       </section>
     </div>
