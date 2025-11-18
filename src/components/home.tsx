@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import ProductImage from "../assets/home_page.png";
+import LogoImage from "../assets/logo.jpeg";
 import SecondSection from "./secondSection";
 import ThirdSection from "./thirdSection";
 import BlurText from "./BlurText";
@@ -42,7 +43,11 @@ const LandingSection = () => {
       {/* Minimal Header */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-6 lg:px-12 py-4 flex justify-between items-center">
-          <div className="text-xl font-light tracking-wider">ETERNAL</div>
+          <img 
+            src={LogoImage} 
+            alt="Eternal Logo" 
+            className="h-10 lg:h-12 w-auto object-contain"
+          />
           <nav className="hidden md:flex gap-10 text-sm">
             <a href="#" className="hover:opacity-60 transition-opacity">Products</a>
             <a href="#" className="hover:opacity-60 transition-opacity">Science</a>

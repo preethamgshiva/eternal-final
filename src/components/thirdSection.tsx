@@ -1,8 +1,11 @@
 import { useRef } from "react";
 import BlurText from "./BlurText";
+import VariableProximity from "./VariableProximity";
 
 const ThirdSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const ingredientsRef = useRef<HTMLDivElement>(null);
+  const testimonialsRef = useRef<HTMLDivElement>(null);
 
   return (
     <div ref={sectionRef} className="relative z-30 bg-white">
@@ -11,9 +14,9 @@ const ThirdSection = () => {
         <div className="max-w-7xl mx-auto w-full">
           <BlurText
             text="How it works"
-            delay={100}
-            animateBy="words"
-            direction="top"
+            delay={80}
+            animateBy="letters"
+            direction="bottom"
             className="text-5xl lg:text-6xl font-light mb-20 text-center"
           />
           
@@ -86,13 +89,23 @@ const ThirdSection = () => {
         <div className="max-w-7xl mx-auto w-full">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
-              <BlurText
-                text="Pure ingredients, powerful results"
-                delay={80}
-                animateBy="words"
-                direction="top"
-                className="text-5xl lg:text-6xl font-light mb-8 leading-tight"
-              />
+              <div ref={ingredientsRef} className="mb-8">
+                <VariableProximity
+                  label="Pure ingredients, powerful results"
+                  fromFontVariationSettings="'wght' 250, 'wdth' 80"
+                  toFontVariationSettings="'wght' 800, 'wdth' 120"
+                  containerRef={ingredientsRef}
+                  radius={160}
+                  falloff="linear"
+                  style={{
+                    fontSize: "clamp(2.5rem, 5vw, 3.75rem)",
+                    fontWeight: 250,
+                    color: "#000000",
+                    fontFamily: '"Roboto Flex", sans-serif',
+                    lineHeight: 1.1,
+                  }}
+                />
+              </div>
               <BlurText
                 text="We source only the finest natural ingredients from sustainable farms around the world. No synthetic fillers, no harsh chemicals."
                 delay={40}
@@ -182,13 +195,25 @@ const ThirdSection = () => {
       {/* Testimonials */}
       <section className="min-h-screen flex items-center px-6 lg:px-12 py-20">
         <div className="max-w-6xl mx-auto w-full">
-          <BlurText
-            text="What people say"
-            delay={100}
-            animateBy="words"
-            direction="top"
-            className="text-5xl lg:text-6xl font-light mb-20 text-center"
-          />
+          <div ref={testimonialsRef} className="mb-20">
+            <VariableProximity
+              label="What people say"
+              fromFontVariationSettings="'wght' 200, 'wdth' 75"
+              toFontVariationSettings="'wght' 900, 'wdth' 125"
+              containerRef={testimonialsRef}
+              radius={220}
+              falloff="exponential"
+              style={{
+                fontSize: "clamp(2.5rem, 5vw, 3.75rem)",
+                fontWeight: 200,
+                color: "#000000",
+                fontFamily: '"Roboto Flex", sans-serif',
+                lineHeight: 1.2,
+                textAlign: "center",
+                display: "block",
+              }}
+            />
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
             <div className="border border-gray-200 p-8 lg:p-12">
@@ -251,9 +276,9 @@ const ThirdSection = () => {
         <div className="max-w-4xl mx-auto text-center w-full">
           <BlurText
             text="Start feeling better today"
-            delay={100}
-            animateBy="words"
-            direction="top"
+            delay={60}
+            animateBy="letters"
+            direction="bottom"
             className="text-5xl lg:text-7xl font-light mb-8 leading-tight"
           />
           <BlurText
