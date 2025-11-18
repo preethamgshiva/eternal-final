@@ -105,10 +105,10 @@ const ScrollFrameAnimation = ({
           className="absolute top-20 left-0 right-0 z-10 text-center px-6 transition-all duration-100"
           style={textTransform}
         >
-          <h2 className="text-5xl lg:text-7xl font-light text-white mb-4">
+          <h2 className="text-6xl lg:text-7xl font-semibold text-black mb-4">
             Experience the Journey
           </h2>
-          <p className="text-xl lg:text-2xl text-gray-300 font-light max-w-3xl mx-auto">
+          <p className="text-2xl lg:text-2xl text-gray-300 font-semibold text-black max-w-3xl mx-auto">
             Watch as our fragrance comes to life, frame by frame
           </p>
         </div>

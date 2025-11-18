@@ -100,11 +100,25 @@ const LandingSection = () => {
 };
 
 const Home = () => {
+  const [showThirdSection, setShowThirdSection] = useState(false);
+
+  const handleSecondSectionComplete = () => {
+    setShowThirdSection(true);
+  };
+
   return (
     <div className="bg-white">
       <LandingSection />
-      <SecondSection />
-      <ThirdSection />
+      <SecondSection onAnimationComplete={handleSecondSectionComplete} />
+      <div 
+        style={{ 
+          opacity: showThirdSection ? 1 : 0,
+          transition: 'opacity 0.5s ease-in-out',
+          pointerEvents: showThirdSection ? 'auto' : 'none'
+        }}
+      >
+        <ThirdSection />
+      </div>
     </div>
   );
 };
