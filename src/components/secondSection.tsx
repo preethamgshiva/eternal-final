@@ -1,95 +1,58 @@
-import SplitText from "./SplitText";
+import { useEffect, useRef, useState } from "react";
 import BlurText from "./BlurText";
 import RotatingText from "./RotatingText";
-import CountUp from "./CountUp";
+import ModelViewer from "./ModelViewer";
 
 const SecondSection = () => {
+  const [scrollY, setScrollY] = useState(0);
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (sectionRef.current) {
+        const rect = sectionRef.current.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        const scrollProgress = Math.max(
+          0,
+          Math.min(1, (windowHeight - rect.top) / windowHeight)
+        );
+        setScrollY(scrollProgress);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const modelTransform = {
+    opacity: scrollY,
+    transform: `scale(${0.5 + scrollY * 0.5}) rotateY(${
+      (1 - scrollY) * 45
+    }deg)`,
+  };
+
   return (
-    <div className="min-h-screen bg-black text-white relative sticky top-0 z-20 flex items-center">
+    <div
+      ref={sectionRef}
+      className="min-h-screen bg-black text-white relative sticky top-0 z-20 flex items-center"
+    >
       <div className="max-w-7xl mx-auto px-6 lg:px-12 py-20">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-          {/* Left - Stats/Info */}
-          <div>
-            <div className="space-y-12">
-              <div>
-                <div className="text-6xl lg:text-7xl font-light mb-4">
-                  <CountUp
-                    from={0}
-                    to={87}
-                    separator=","
-                    direction="up"
-                    duration={1}
-                    className="count-up-text"
-                  />
-                  %
-                </div>
-                <SplitText
-                  text="of users reported improved mood within 7 days"
-                  className="text-xl text-center"
-                  delay={50}
-                  duration={0.3}
-                  ease="power3.out"
-                  splitType="chars"
-                  from={{ opacity: 0, y: 40 }}
-                  to={{ opacity: 1, y: 0 }}
-                  threshold={0.1}
-                  rootMargin="-100px"
-                  textAlign="center"
-                />
-              </div>
-              <div>
-                <div className="text-5xl lg:text-7xl font-light mb-4">
-                  <CountUp
-                    from={0}
-                    to={24}
-                    separator=","
-                    direction="up"
-                    duration={1}
-                    className="count-up-text"
-                  />
-                  h
-                </div>
-                <SplitText
-                  text="long-lasting formula that evolves with your body chemistry"
-                  className="text-xl text-center"
-                  delay={30}
-                  duration={0.3}
-                  ease="power3.out"
-                  splitType="chars"
-                  from={{ opacity: 0, y: 40 }}
-                  to={{ opacity: 1, y: 0 }}
-                  threshold={0.1}
-                  rootMargin="-100px"
-                  textAlign="center"
-                />
-              </div>
-              <div>
-                <div className="text-6xl lg:text-7xl font-light mb-4">
-                  <CountUp
-                    from={0}
-                    to={100}
-                    separator=","
-                    direction="up"
-                    duration={1}
-                    className="count-up-text"
-                  />
-                  %
-                </div>
-                <SplitText
-                  text="natural ingredients, sustainably sourced"
-                  className="text-xl text-center"
-                  delay={30}
-                  duration={0.3}
-                  ease="power3.out"
-                  splitType="chars"
-                  from={{ opacity: 0, y: 40 }}
-                  to={{ opacity: 1, y: 0 }}
-                  threshold={0.1}
-                  rootMargin="-100px"
-                  textAlign="center"
-                />
-              </div>
-            </div>
+          {/* Left - 3D Model */}
+          <div
+            className="flex items-center justify-center transition-all duration-700"
+            style={modelTransform}
+          >
+            <ModelViewer
+              url="/src/assets/final.glb"
+              width={800}
+              height={800}
+              autoFrame={true}
+              defaultZoom={2}
+              modelXOffset={-0.3}
+              showScreenshotButton={false}
+            />
           </div>
 
           {/* Right - Description */}
@@ -116,14 +79,14 @@ const SecondSection = () => {
               delay={10}
               animateBy="letters"
               direction="top"
-              className="text-2xl mb-8"
+              className="text-2xl mb-8 font-none"
             />
             <BlurText
               text="Developed in partnership with leading fragrance scientists and tested in clinical trials, Eternal is more than a perfume—it's a wellness tool."
               delay={10}
               animateBy="letters"
               direction="top"
-              className="text-2xl mb-8 font-none"
+              className="text-2xl mb-8"
             />
           </div>
         </div>
