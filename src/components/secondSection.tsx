@@ -55,29 +55,29 @@ const SecondSection = ({ onAnimationComplete }: SecondSectionProps) => {
         }
 
         // Calculate animation progress only after delay has passed and animation has started
-        if (hasEnteredView && animationStarted && !hasCompletedRef.current) {
+        if (hasEnteredView && animationStarted) {
           // Ensure animationStartPosition is set correctly
           if (animationStartPositionRef.current === 0 && currentScrollY > 0) {
             animationStartPositionRef.current = currentScrollY;
           }
           
           // For sticky sections, calculate progress based on scroll distance since animation started
-          // Animation progresses as user scrolls while section is sticky
-          const scrollDelta = Math.max(0, currentScrollY - animationStartPositionRef.current);
+          // Animation progresses bidirectionally as user scrolls while section is sticky
+          // scrollDelta can be positive (scroll down) or negative (scroll up)
+          const scrollDelta = currentScrollY - animationStartPositionRef.current;
           const sectionHeight = windowHeight; // Use viewport height for consistent progress
           
           // Progress from 0 to 1 as user scrolls through one viewport height
+          // Allow bidirectional scrolling - can go backwards
           const progress = Math.max(0, Math.min(1, scrollDelta / sectionHeight));
           
           setAnimationProgress(progress);
           setScrollY(progress);
 
-          // Trigger completion callback when animation reaches 100%
-          if (progress >= 1 && !hasCompletedRef.current) {
+          // Trigger completion callback when animation first reaches 100% (only once)
+          if (progress >= 1 && !hasCompletedRef.current && onAnimationComplete) {
             hasCompletedRef.current = true;
-            if (onAnimationComplete) {
-              onAnimationComplete();
-            }
+            onAnimationComplete();
           }
         } else if (hasEnteredView && !animationStarted) {
           // Keep values at 0 until animation starts after delay
