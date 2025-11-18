@@ -25,7 +25,7 @@ const SecondSection = () => {
                 </div>
                 <SplitText
                   text="of users reported improved mood within 7 days"
-                  className="text-xl font-semibold text-center"
+                  className="text-xl text-center"
                   delay={50}
                   duration={0.3}
                   ease="power3.out"
@@ -51,7 +51,7 @@ const SecondSection = () => {
                 </div>
                 <SplitText
                   text="long-lasting formula that evolves with your body chemistry"
-                  className="text-xl font-semibold text-center"
+                  className="text-xl text-center"
                   delay={30}
                   duration={0.3}
                   ease="power3.out"
@@ -77,7 +77,7 @@ const SecondSection = () => {
                 </div>
                 <SplitText
                   text="natural ingredients, sustainably sourced"
-                  className="text-xl font-semibold text-center"
+                  className="text-xl text-center"
                   delay={30}
                   duration={0.3}
                   ease="power3.out"
@@ -123,7 +123,7 @@ const SecondSection = () => {
               delay={10}
               animateBy="letters"
               direction="top"
-              className="text-2xl mb-8"
+              className="text-2xl mb-8 font-none"
             />
           </div>
         </div>
