@@ -1,27 +1,8 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import BlurText from "./BlurText";
 
 const ThirdSection = () => {
-  const [scrollY, setScrollY] = useState(0);
   const sectionRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (sectionRef.current) {
-        const rect = sectionRef.current.getBoundingClientRect();
-        const windowHeight = window.innerHeight;
-        const scrollProgress = Math.max(
-          0,
-          Math.min(1, (windowHeight - rect.top) / windowHeight)
-        );
-        setScrollY(scrollProgress);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   return (
     <div ref={sectionRef} className="relative z-30 bg-white">
