@@ -45,7 +45,7 @@ const SecondSection = () => {
             style={modelTransform}
           >
             <ModelViewer
-              url="/src/assets/final.glb"
+              url="/final.glb"
               width={800}
               height={800}
               autoFrame={true}
