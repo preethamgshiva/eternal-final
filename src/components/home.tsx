@@ -67,8 +67,8 @@ const LandingSection = () => {
           className="flex-1 flex flex-col justify-center px-6 lg:px-12 xl:px-20 py-20 lg:py-0"
           style={textTransform}
         >
-          <div className="max-w-2xl">
-            <h1 className="text-7xl lg:text-8xl xl:text-9xl font-bold mb-8 leading-none tracking-tight lowercase">
+          <div className="max-w-4xl">
+            <h1 className="text-[8rem] lg:text-[10rem] xl:text-[12rem] 2xl:text-[14rem] font-bold mb-12 leading-[0.85] tracking-tight lowercase">
               feel
               <br />
               better
